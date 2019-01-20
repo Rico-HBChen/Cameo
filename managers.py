@@ -35,7 +35,7 @@ class CaptureManager(object):
 
     @property
     def frame(self):
-        if self._enteredFrame end self._frame is None:
+        if self._enteredFrame and self._frame is None:
             _,self._frame=self._capture.retrieve()
             return self._frame
 
@@ -45,7 +45,7 @@ class CaptureManager(object):
 
     @property
     def isWritingVideo(self):
-        returen self._videoFilename is not None
+        return self._videoFilename is not None
 
     #同步获取一帧
     def enterFrame(self):
@@ -141,7 +141,7 @@ class WindowManager(object):
     def isWindowCreated(self):
         return self._isWindowCreated
         def createWindow(self):
-        cv2.nameWindow(self._windowName)
+        cv2.namedWindow(self._windowName)
         self._isWindowCreated=True
 
     def show (self,frame):
