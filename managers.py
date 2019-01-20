@@ -46,3 +46,10 @@ class CaptureManager(object):
     @property
     def isWritingVideo(self):
         returen self._videoFilename is not None
+
+#第二阶段程序
+    def enterFrame(self):
+        """Capture the next frame,if any."""
+
+        #首先检查Pevious frame是否以及退出
+        assert not self._enter
