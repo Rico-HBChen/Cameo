@@ -52,4 +52,5 @@ class CaptureManager(object):
         """Capture the next frame,if any."""
 
         #首先检查Pevious frame是否以及退出
-        assert not self._enter
+        assert not self._enteredFrame,\
+               git_test
