@@ -8,7 +8,7 @@ class CaptureManager(object):
     def __init__(self,capture,previewWindowManager=None,shouldMirrorPreview=False):
 
         self.previewWindowManager=previewWindowManager
-        self.shouldMirrorPreview=shouldMirroPreview
+        self.shouldMirrorPreview=shouldMirrorPreview
 
         self._capture=capture
         self._channel=0
@@ -20,7 +20,7 @@ class CaptureManager(object):
         self._videoWriter=None
 
         self._startTime=None
-        self._framesElapsed=long(0)
+        self._framesElapsed=int (0)
         self._fpsEstimate=None
 
     @property
@@ -41,6 +41,7 @@ class CaptureManager(object):
 
     @property
     def isWritingImage(self):
+        
         return self._imageFilename is not None
 
     @property
@@ -95,15 +96,15 @@ class CaptureManager(object):
         self._enteredFrame=False
 
     #其他文件写入的方法
+   # '''
     def writeImage(self,filename):
         """Write the next exited frame to an image file."""
         self._imageFilename=filename
 
-    def startWritingVideo(self,filename,encoding=cv2.VideoWtiter_fourcc('I','4','2','0')):
+    def startWritingVideo(self,filename,encoding=cv2.VideoWriter_fourcc('I','4','2','0')):
         """start writing exited frames to a video file."""
-        self._videoFilename=None
-        self._videoEncoding=None
-        self._videoWriter=None
+        self._videoFilename=filename
+        self._videoEncoding=encoding
 
     def stopWritingVideo(self):
         """stop Writing exited frames to a video file."""
@@ -127,7 +128,7 @@ class CaptureManager(object):
                     fps=self._fpsEstimate
             size=(int(self._capture.get(cv2.CAP_PROP_FRAME_WIDTH)),int(self._capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
         self._videoWriter.write(self._frame)
-
+#'''
 
 class WindowManager(object):
 
@@ -140,7 +141,8 @@ class WindowManager(object):
     @property
     def isWindowCreated(self):
         return self._isWindowCreated
-        def createWindow(self):
+
+    def createWindow(self):
         cv2.namedWindow(self._windowName)
         self._isWindowCreated=True
 
