@@ -1,4 +1,5 @@
 import cv2
+import filters
 from managers import WindowManager,CaptureManager
 
 class Cameo(object):
@@ -6,6 +7,7 @@ class Cameo(object):
         self._windowManager=WindowManager('Cameo',self.onKeypress)
         self._captureManager=CaptureManager(
             cv2.VideoCapture(0),self._windowManager,True)
+        #self._curveFilter=filters.BGRPortraCurveFilter()
 
     def run(self):
         """Run the main loop."""
@@ -35,7 +37,7 @@ class Cameo(object):
             else:
                 self._captureManager.stopWritingVideo()
         elif keycode ==27:#escape
-            self._WindowManager.destroyWindow()
+            self._windowManager.destroyWindow()
 
 if __name__=="__main__":
     Cameo().run()
